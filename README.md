@@ -14,9 +14,9 @@ npm install spearman-rank-corr --save
 ```
 
 ```typescript
-"use strict";
+'use strict';
 
-const rho = require("spearman-rank-corr");
+const rho = require('spearman-rank-corr');
 
 const x = [2.0, 3.0, 3.0, 5.0, 5.5, 8.0, 10.0, 10.0];
 const y = [1.5, 1.5, 4.0, 3.0, 1.0, 5.0, 5.0, 9.5];
