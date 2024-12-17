@@ -6,11 +6,11 @@ interface RankedValue {
 
 export default function spearman(X: number[], Y: number[]) {
   if (X.length !== Y.length) {
-    throw new Error("Input arrays do not have the same length.");
+    throw new Error('Input arrays do not have the same length.');
   }
   const n = X.length;
   if (n === 0) {
-    throw new Error("Input arrays are empty.");
+    throw new Error('Input arrays are empty.');
   }
 
   const rankX = standardizeRank(addRank(prepare(X)));
@@ -43,11 +43,12 @@ function addRank(values: RankedValue[]): RankedValue[] {
     }));
 }
 
-function standardizeRank(timeSeries: RankedValue[]) {
-  const groups: { [rank: number]: RankedValue[] } = {};
-  for (let i = 0; i < timeSeries.length; i++) {
-    groups[timeSeries[i].value] = groups[timeSeries[i].value] || [];
-    groups[timeSeries[i].value].push(timeSeries[i]);
+function standardizeRank(values: RankedValue[]) {
+  const groups: { [rank: string]: RankedValue[] } = {};
+  for (let i = 0; i < values.length; i++) {
+    const v = values[i]!.value;
+    groups[v] = groups[v] || [];
+    groups[v].push(values[i]!);
   }
 
   for (const [_, values] of Object.entries(groups)) {
@@ -57,11 +58,11 @@ function standardizeRank(timeSeries: RankedValue[]) {
     }
   }
 
-  return timeSeries.sort((a, b) => a.index - b.index);
+  return values.sort((a, b) => a.index - b.index);
 }
 
 function Ed_2(X: RankedValue[], Y: RankedValue[]) {
-  return X.map((x, i) => Math.pow(x.rank - Y[i].rank, 2)).reduce(
+  return X.map((x, i) => Math.pow(x.rank - Y[i]!.rank, 2)).reduce(
     (a, b) => a + b,
     0,
   );
@@ -70,8 +71,9 @@ function Ed_2(X: RankedValue[], Y: RankedValue[]) {
 function T_(values: RankedValue[]) {
   const groups: { [rank: number]: RankedValue[] } = {};
   for (let i = 0; i < values.length; i++) {
-    groups[values[i].rank] = groups[values[i].rank] || [];
-    groups[values[i].rank].push(values[i]);
+    const r = values[i]!.rank;
+    groups[r] = groups[r] || [];
+    groups[r].push(values[i]!);
   }
   return Object.entries(groups)
     .map(([_, values]) => Math.pow(values.length, 3) - values.length)

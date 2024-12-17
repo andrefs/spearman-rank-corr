@@ -7,6 +7,7 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
+    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     /* Strictness */
