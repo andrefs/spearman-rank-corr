@@ -25,7 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/andrefs/spearman-rank-corr.git"
   },
-  "types": "./dist/src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "files": [
     "dist"
