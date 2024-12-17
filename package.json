@@ -4,14 +4,15 @@
   "description": "Spearman's rank correlation coefficient",
   "main": "index.ts",
   "scripts": {
-    "test": "vitest",
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "preversion": "npm test",
     "version": "npm run build && git add dist",
     "postversion": "git push && git push --tags",
     "lint": "eslint src",
-    "lint:fix": "eslint src --fix"
+    "lint:fix": "eslint src --fix",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "engines": {
     "node": ">=4.0.0"
