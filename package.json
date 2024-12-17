@@ -1,6 +1,6 @@
 {
   "name": "spearman-rank-corr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Spearman's rank correlation coefficient",
   "main": "index.ts",
   "scripts": {
@@ -44,6 +44,8 @@
   },
   "homepage": "https://github.com/andrefs/spearman-rank-corr#readme",
   "devDependencies": {
+    "@types/node": "22.10.2",
+    "typescript": "5.7.2",
     "vitest": "2.1.8"
   }
 }
