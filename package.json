@@ -2,7 +2,7 @@
   "name": "spearman-rank-corr",
   "version": "0.0.5",
   "description": "Spearman's rank correlation coefficient",
-  "main": "index.ts",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
@@ -27,7 +27,7 @@
   ],
   "exports": {
     ".": {
-      "import": "./src/index.ts",
+      "import": "./dist/src/index.js",
       "require": "./dist/src/index.js"
     }
   },
