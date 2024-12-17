@@ -1,17 +1,17 @@
 {
-  "name": "spearman-rho",
-  "version": "1.0.6",
+  "name": "spearman-rank-corr",
+  "version": "0.0.1",
   "description": "Spearman's rank correlation coefficient",
-  "main": "spearman-rho.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "mocha tests"
+    "test": "vitest"
   },
   "engines": {
     "node": ">=4.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ericrange/spearman-rho.git"
+    "url": "git+https://github.com/andrefs/spearman-rank-corr.git"
   },
   "keywords": [
     "Spearman",
@@ -19,16 +19,17 @@
     "correlation",
     "coefficient"
   ],
-  "author": "Eric Range <mail@eric-range.de> (https://eric-range.de)",
+  "author": "André Santos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ericrange/spearman-rho/issues"
+    "url": "https://github.com/andrefs/spearman-rank-corr/issues"
   },
-  "homepage": "https://github.com/ericrange/spearman-rho#readme",
+  "homepage": "https://github.com/andrefs/spearman-rank-corr#readme",
   "dependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "4.17.21"
   },
   "devDependencies": {
-    "mocha": "^3.2.0"
+    "@types/lodash": "4.17.13",
+    "vitest": "2.1.8"
   }
 }
