@@ -15,12 +15,12 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": "./src",
     "strict": true,
-    "declaration": true,
     "skipLibCheck": true,
     "baseUrl": "./",
     "outDir": "dist",
     "sourceMap": true,
-    "noEmitOnError": true
+    "declaration": true,
+    "declarationDir": "dist"
   },
   "include": [
     "src"

@@ -4,7 +4,14 @@
   "description": "Spearman's rank correlation coefficient",
   "main": "index.ts",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "preversion": "npm test",
+    "version": "npm run build && git add dist",
+    "postversion": "git push && git push --tags",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "engines": {
     "node": ">=4.0.0"
@@ -12,6 +19,16 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andrefs/spearman-rank-corr.git"
+  },
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "require": "./dist/src/index.js"
+    }
   },
   "keywords": [
     "Spearman",
