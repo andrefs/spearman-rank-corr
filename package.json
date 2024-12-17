@@ -1,6 +1,6 @@
 {
   "name": "spearman-rank-corr",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Spearman's rank correlation coefficient",
   "main": "index.ts",
   "scripts": {
