@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = spearman;
 function spearman(X, Y) {
     if (X.length !== Y.length) {
         throw new Error('Input arrays do not have the same length.');
@@ -16,7 +17,6 @@ function spearman(X, Y) {
     const denominator = (Math.pow(n, 3) - n - Tx) * (Math.pow(n, 3) - n - Ty);
     return denominator <= 0 ? 0 : (numerator / Math.sqrt(denominator));
 }
-exports.default = spearman;
 function prepare(values) {
     return values.map((v, i) => ({
         index: i,
