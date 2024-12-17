@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "lib": [
+      "ES2017",
+      "DOM"
+    ],
+    "types": [
+      "vitest/globals",
+      "node"
+    ],
+    "module": "nodenext",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "./src",
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "outDir": "dist",
+    "sourceMap": true,
+    "noEmitOnError": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
