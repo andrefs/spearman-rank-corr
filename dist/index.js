@@ -3,11 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = spearman;
 function spearman(X, Y) {
     if (X.length !== Y.length) {
-        throw new Error('Input arrays do not have the same length.');
+        throw new Error("Input arrays do not have the same length.");
     }
     const n = X.length;
     if (n === 0) {
-        throw new Error('Input arrays are empty.');
+        throw new Error("Input arrays are empty.");
     }
     const rankX = standardizeRank(addRank(prepare(X)));
     const rankY = standardizeRank(addRank(prepare(Y)));
@@ -15,7 +15,7 @@ function spearman(X, Y) {
     const Ty = T_(rankY);
     const numerator = Math.pow(n, 3) - n - 0.5 * Tx - 0.5 * Ty - 6 * Ed_2(rankX, rankY);
     const denominator = (Math.pow(n, 3) - n - Tx) * (Math.pow(n, 3) - n - Ty);
-    return denominator <= 0 ? 0 : (numerator / Math.sqrt(denominator));
+    return denominator <= 0 ? 0 : numerator / Math.sqrt(denominator);
 }
 function prepare(values) {
     return values.map((v, i) => ({
