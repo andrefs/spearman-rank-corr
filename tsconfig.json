@@ -7,7 +7,6 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleDetection": "force",
-    "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     /* Strictness */
@@ -15,13 +14,15 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
     /* If transpiling with TypeScript: */
-    "module": "NodeNext",
+    "module": "es2022",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,
     /* AND if you're building for a library: */
     "declaration": true,
-    "lib": ["es2022"],
-    "noEmit": true
+    "lib": [
+      "es2022"
+    ]
   }
 }

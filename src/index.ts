@@ -48,7 +48,7 @@ function standardizeRank(values: RankedValue[]) {
   for (let i = 0; i < values.length; i++) {
     const v = values[i]!.value;
     groups[v] = groups[v] || [];
-    groups[v].push(values[i]!);
+    groups[v]!.push(values[i]!);
   }
 
   for (const [_, values] of Object.entries(groups)) {
@@ -73,7 +73,7 @@ function T_(values: RankedValue[]) {
   for (let i = 0; i < values.length; i++) {
     const r = values[i]!.rank;
     groups[r] = groups[r] || [];
-    groups[r].push(values[i]!);
+    groups[r]!.push(values[i]!);
   }
   return Object.entries(groups)
     .map(([_, values]) => Math.pow(values.length, 3) - values.length)
