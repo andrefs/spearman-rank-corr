@@ -25,11 +25,7 @@
     "url": "https://github.com/andrefs/spearman-rank-corr/issues"
   },
   "homepage": "https://github.com/andrefs/spearman-rank-corr#readme",
-  "dependencies": {
-    "lodash": "4.17.21"
-  },
   "devDependencies": {
-    "@types/lodash": "4.17.13",
     "vitest": "2.1.8"
   }
 }

@@ -51,19 +51,20 @@ function addRank(values: RankedValue[]): RankedValue[] {
 }
 
 function standardizeRank(timeSeries: RankedValue[]) {
-  const rank = _.chain(timeSeries)
-    .groupBy('value')
-    .map(groupValues => {
-      const groupMean = _.meanBy(groupValues, 'rank');
-      return _.map(groupValues, value =>
-        _.set(value, 'rank', groupMean)
-      );
-    })
-    .flatten()
-    .sortBy('index')
-    .value();
+  const groups: { [rank: number]: RankedValue[] } = {}
+  for (let i = 0; i < timeSeries.length; i++) {
+    groups[timeSeries[i].value] = groups[timeSeries[i].value] || [];
+    groups[timeSeries[i].value].push(timeSeries[i]);
+  }
 
-  return rank;
+  for (const [_, values] of Object.entries(groups)) {
+    const groupMean = values.reduce((a, b) => a + b.rank, 0) / values.length;
+    for (const value of values) {
+      value.rank = groupMean;
+    }
+  }
+
+  return timeSeries.sort((a, b) => a.index - b.index);
 }
 
 function Ed_2(X: RankedValue[], Y: RankedValue[]) {

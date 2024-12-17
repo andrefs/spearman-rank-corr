@@ -3,7 +3,7 @@
 Spearman's rank correlation coefficient in TypeScript.
 
 This is a port of [spearman-rho](https://github.com/ericrange/spearman-rho), adding types.
-Also, I removed all the promises.
+Also, I removed all the promises and the `lodash` dependency.
 
 In statistics, Spearman's rank correlation coefficient (or Spearman's rho) is a nonparametric measure of statistical dependence between two variables.
 
