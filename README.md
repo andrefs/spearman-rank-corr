@@ -9,14 +9,16 @@ In statistics, Spearman's rank correlation coefficient (or Spearman's rho) is a 
 
 It assesses how well the relationship between two variables can be described using a monotonic function. If there are no repeated data values, a perfect Spearman correlation of +1 or −1 occurs when each of the variables is a perfect monotone function of the other. (Wikipedia)
 
+## Installation
+
 ```shell
-npm install spearman-rank-corr --save
+npm install spearman-rank-corr
 ```
 
-```typescript
-'use strict';
+## Usage
 
-const rho = require('spearman-rank-corr');
+```typescript
+import rho from 'spearman-rank-corr';
 
 const x = [2.0, 3.0, 3.0, 5.0, 5.5, 8.0, 10.0, 10.0];
 const y = [1.5, 1.5, 4.0, 3.0, 1.0, 5.0, 5.0, 9.5];
