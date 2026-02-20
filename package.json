@@ -1,6 +1,6 @@
 {
   "name": "spearman-rank-corr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Spearman's rank correlation coefficient",
   "main": "dist/index.js",
   "scripts": {
