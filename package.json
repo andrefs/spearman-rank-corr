@@ -41,6 +41,10 @@
   "bugs": {
     "url": "https://github.com/andrefs/spearman-rank-corr/issues"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "repository": "https://github.com/andrefs/spearman-rank-corr.git"
+  },
   "homepage": "https://github.com/andrefs/spearman-rank-corr#readme",
   "devDependencies": {
     "@arethetypeswrong/cli": "0.17.1",
