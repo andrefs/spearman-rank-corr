@@ -1,61 +1,78 @@
 export default function spearman(X, Y) {
-    if (X.length !== Y.length) {
-        throw new Error('Input arrays do not have the same length.');
-    }
-    const n = X.length;
-    if (n === 0) {
-        throw new Error('Input arrays are empty.');
-    }
-    const rankX = standardizeRank(addRank(prepare(X)));
-    const rankY = standardizeRank(addRank(prepare(Y)));
-    const Tx = T_(rankX);
-    const Ty = T_(rankY);
-    const numerator = Math.pow(n, 3) - n - 0.5 * Tx - 0.5 * Ty - 6 * Ed_2(rankX, rankY);
-    const denominator = (Math.pow(n, 3) - n - Tx) * (Math.pow(n, 3) - n - Ty);
-    return denominator <= 0 ? 0 : numerator / Math.sqrt(denominator);
+  if (X.length !== Y.length) {
+    throw new Error('Input arrays do not have the same length.');
+  }
+  const n = X.length;
+  if (n === 0) {
+    throw new Error('Input arrays are empty.');
+  }
+  const rankX = standardizeRank(addRank(prepare(X)));
+  const rankY = standardizeRank(addRank(prepare(Y)));
+  const Tx = T_(rankX);
+  const Ty = T_(rankY);
+  const numerator =
+    Math.pow(n, 3) - n - 0.5 * Tx - 0.5 * Ty - 6 * Ed_2(rankX, rankY);
+  const denominator = (Math.pow(n, 3) - n - Tx) * (Math.pow(n, 3) - n - Ty);
+  return denominator <= 0 ? 0 : numerator / Math.sqrt(denominator);
+}
+/**
+ * Returns the tie-adjusted (average) ranks of `values`, in original input order.
+ *
+ * Ranks are 0-based; tied values receive the mean of their positions.
+ * The result is suitable for computing Spearman's rho as the Pearson
+ * correlation of the ranks.
+ *
+ * @param values - array of numbers
+ * @returns ranks aligned with the input order (empty array for empty input)
+ */
+export function rank(values) {
+  return standardizeRank(addRank(prepare(values))).map((v) => v.rank);
 }
 function prepare(values) {
-    return values.map((v, i) => ({
-        index: i,
-        value: v,
-        rank: 0,
-    }));
+  return values.map((v, i) => ({
+    index: i,
+    value: v,
+    rank: 0,
+  }));
 }
 function addRank(values) {
-    return values
-        .sort((a, b) => a.value - b.value)
-        .map((v, i) => ({
-        ...v,
-        rank: i,
+  return values
+    .sort((a, b) => a.value - b.value)
+    .map((v, i) => ({
+      ...v,
+      rank: i,
     }));
 }
 function standardizeRank(values) {
-    const groups = {};
-    for (let i = 0; i < values.length; i++) {
-        const v = values[i].value;
-        groups[v] = groups[v] || [];
-        groups[v].push(values[i]);
+  const groups = {};
+  for (let i = 0; i < values.length; i++) {
+    const v = values[i].value;
+    groups[v] = groups[v] || [];
+    groups[v].push(values[i]);
+  }
+  for (const [_, values] of Object.entries(groups)) {
+    const groupMean = values.reduce((a, b) => a + b.rank, 0) / values.length;
+    for (const value of values) {
+      value.rank = groupMean;
     }
-    for (const [_, values] of Object.entries(groups)) {
-        const groupMean = values.reduce((a, b) => a + b.rank, 0) / values.length;
-        for (const value of values) {
-            value.rank = groupMean;
-        }
-    }
-    return values.sort((a, b) => a.index - b.index);
+  }
+  return values.sort((a, b) => a.index - b.index);
 }
 function Ed_2(X, Y) {
-    return X.map((x, i) => Math.pow(x.rank - Y[i].rank, 2)).reduce((a, b) => a + b, 0);
+  return X.map((x, i) => Math.pow(x.rank - Y[i].rank, 2)).reduce(
+    (a, b) => a + b,
+    0,
+  );
 }
 function T_(values) {
-    const groups = {};
-    for (let i = 0; i < values.length; i++) {
-        const r = values[i].rank;
-        groups[r] = groups[r] || [];
-        groups[r].push(values[i]);
-    }
-    return Object.entries(groups)
-        .map(([_, values]) => Math.pow(values.length, 3) - values.length)
-        .reduce((a, b) => a + b, 0);
+  const groups = {};
+  for (let i = 0; i < values.length; i++) {
+    const r = values[i].rank;
+    groups[r] = groups[r] || [];
+    groups[r].push(values[i]);
+  }
+  return Object.entries(groups)
+    .map(([_, values]) => Math.pow(values.length, 3) - values.length)
+    .reduce((a, b) => a + b, 0);
 }
 //# sourceMappingURL=index.js.map

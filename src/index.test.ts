@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import rho from './index';
+import rho, { rank } from './index';
 
 describe('spearman-rank-corr', function () {
   it('#1: 0.6829', function () {
@@ -38,5 +38,27 @@ describe('spearman-rank-corr', function () {
 
     const value = rho(x, z);
     expect(value).toBeCloseTo(0.3658959519697062, 6);
+  });
+});
+
+describe('rank', function () {
+  it('assigns 0-based ranks in ascending order', function () {
+    expect(rank([10, 30, 20])).toEqual([0, 2, 1]);
+  });
+
+  it('averages ranks for tied values', function () {
+    expect(rank([10, 20, 20, 30])).toEqual([0, 1.5, 1.5, 3]);
+  });
+
+  it('preserves original input order', function () {
+    expect(rank([30, 10, 20, 20])).toEqual([3, 0, 1.5, 1.5]);
+  });
+
+  it('returns an empty array for empty input', function () {
+    expect(rank([])).toEqual([]);
+  });
+
+  it('ranks a single value as 0', function () {
+    expect(rank([42])).toEqual([0]);
   });
 });

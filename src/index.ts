@@ -26,6 +26,20 @@ export default function spearman(X: number[], Y: number[]) {
   return denominator <= 0 ? 0 : numerator / Math.sqrt(denominator);
 }
 
+/**
+ * Returns the tie-adjusted (average) ranks of `values`, in original input order.
+ *
+ * Ranks are 0-based; tied values receive the mean of their positions.
+ * The result is suitable for computing Spearman's rho as the Pearson
+ * correlation of the ranks.
+ *
+ * @param values - array of numbers
+ * @returns ranks aligned with the input order (empty array for empty input)
+ */
+export function rank(values: number[]): number[] {
+  return standardizeRank(addRank(prepare(values))).map((v) => v.rank);
+}
+
 function prepare(values: number[]) {
   return values.map((v, i) => ({
     index: i,

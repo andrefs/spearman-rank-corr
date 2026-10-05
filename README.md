@@ -26,3 +26,16 @@ const y = [1.5, 1.5, 4.0, 3.0, 1.0, 5.0, 5.0, 9.5];
 const value = rho(x, y);
 console.log(value);
 ```
+
+### Ranking values
+
+`rank` returns the tie-adjusted (average) ranks of the input, in original order.
+Since Spearman's rho is the Pearson correlation of the ranks, `rank` is useful when
+the correlation itself is computed elsewhere (e.g. together with a significance test).
+
+```typescript
+import { rank } from 'spearman-rank-corr';
+
+rank([10, 20, 20, 30]); // [0, 1.5, 1.5, 3]
+rank([30, 10, 20, 20]); // [3, 0, 1.5, 1.5]
+```
